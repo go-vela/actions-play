@@ -1,14 +1,15 @@
 # name of the action
-name: test
+name: tag
 
 # trigger on push events with tag
 on:
   push:
     tags:
+      - '*'
 
 # pipeline to execute
 jobs:
-  test:
+  tagging:
     runs-on: ubuntu-latest
     container:
       image: golang:latest
@@ -22,3 +23,7 @@ jobs:
         run: |
           echo ${GITHUB_REF#refs/tags/}
           echo "GITHUB_TAG=${GITHUB_REF#refs/tags/}" >> $GITHUB_ENV
+
+      - name: test
+        run: |
+          echo ${GITHUB_TAG}

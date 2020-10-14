@@ -11,8 +11,8 @@ var (
 	Built string
 	// Git represents the git information for the application.
 	Git string
-	// Go represents the go information for the application.
-	Go string
+	// Lang represents the go information for the application.
+	Lang string
 )
 
 func main() {
@@ -24,5 +24,5 @@ func main() {
 
 	fmt.Println("Git: ", Git)
 
-	fmt.Println("Go: ", Go)
+	fmt.Println("Lang: ", Lang)
 }

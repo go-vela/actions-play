@@ -20,7 +20,7 @@ jobs:
           GO_VERSION=$(go version)
 
           go build \
-            -ldflags "-X main.Git=${GITHUB_SHA} main.Lang=${GO_VERSION}" \
+            -ldflags "-X main.Git=${GITHUB_SHA} -X main.Lang=${GO_VERSION}" \
             -o release/test
              
       - name: execute

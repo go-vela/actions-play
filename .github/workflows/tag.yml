@@ -27,3 +27,13 @@ jobs:
       - name: test
         run: |
           echo ${GITHUB_TAG}
+
+      - name: build
+        run: |
+          go build \
+            -ldflags="-X main.App=${GITHUB_TAG} main.Arch=foo main.Built=$(date) main.Git=${GITHUB_SHA} main.Go=$(go version)" \
+            -o release/test
+
+      - name: execute
+        run: |
+          ./release/test

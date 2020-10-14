@@ -1,0 +1,21 @@
+# name of the action
+name: push
+
+# trigger on push events
+on:
+  push:
+
+# pipeline to execute
+jobs:
+  pushing:
+    runs-on: ubuntu-latest
+    container:
+      image: golang:latest
+    steps:
+      - name: clone
+        uses: actions/checkout@v2
+
+      - name: build
+        run: |
+          go build \
+            -o release/test

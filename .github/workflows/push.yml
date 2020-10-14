@@ -18,5 +18,9 @@ jobs:
       - name: build
         run: |
           go build \
-            -ldflags "-X main.Git=${GITHUB_SHA}" \
+            -ldflags "-X main.Git=${GITHUB_SHA} main.Go=$(go version)" \
             -o release/test
+             
+      - name: execute
+        run: |
+          ./release/test

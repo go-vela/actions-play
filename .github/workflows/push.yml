@@ -17,8 +17,10 @@ jobs:
 
       - name: build
         run: |
+          BUILD_DATE=$(date)
+
           go build \
-            -ldflags "-X main.App=${GITHUB_TAG} -X main.Git=${GITHUB_SHA} -X main.Lang=${GOLANG_VERSION}" \
+            -ldflags "-X main.App=${GITHUB_TAG} -X main.Built=${BUILD_DATE} -X main.Git=${GITHUB_SHA} -X main.Lang=${GOLANG_VERSION}" \
             -o release/test
 
       - name: execute

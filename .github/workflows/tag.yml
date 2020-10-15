@@ -28,11 +28,17 @@ jobs:
         run: |
           echo ${GITHUB_TAG}
 
+      - name: install
+        run: |
+          go get github.com/ahmetb/govvv
+
+      - name: output
+        run: |
+          govvv build -o release/test -print -version ${GITHUB_TAG}
+
       - name: build
         run: |
-          go build \
-            -ldflags "-X main.App=${GITHUB_TAG} -X main.Built=$(date +”%Y.%m.%d.%H%M%S”) -X main.Git=${GITHUB_SHA} -X main.Lang=${GOLANG_VERSION}" \
-            -o release/test
+          govvv build -o release/test -version ${GITHUB_TAG}
 
       - name: execute
         run: |
